@@ -46,3 +46,31 @@ class Reddit(object):
         a=requests.get('https://oauth.reddit.com{}'.format(path), headers=self.headers)
         print(a.json())
 
+
+    def subscribe_to_sub(self, sub):
+        ''' https://www.reddit.com/dev/api#POST_api_subscribe
+        '''
+        
+        data = {"action" : "sub",
+                "action_source": "o",
+                "skip_initial_defaults": True,
+                "sr_name" : sub
+                    }
+        res = requests.post('https://oauth.reddit.com/api/subscribe',
+                                    data=data, headers=self.headers)
+        
+        print(res.json())
+
+
+    def unsubscribe_from_sub(self, sub):
+        ''' https://www.reddit.com/dev/api#POST_api_subscribe
+        '''
+        
+        data = {"action" : "unsub",
+                "action_source": "o",
+                "sr_name" : sub
+                    }
+        res = requests.post('https://oauth.reddit.com/api/subscribe',
+                                    data=data, headers=self.headers)
+        
+        print(res.json())

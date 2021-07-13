@@ -21,3 +21,6 @@ def get_info():
 USER, PASSW, ID, SEC = get_info()
 red = reddit.Reddit(USER, PASSW, ID, SEC)
 red.request_path("/api/v1/me")
+print()
+print(red.subscribe_to_sub('/r/supportlol'))
+print(red.unsubscribe_from_sub('/r/supportlol'))
