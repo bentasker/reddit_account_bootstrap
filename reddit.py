@@ -45,6 +45,7 @@ class Reddit(object):
         # while the token is valid (~2 hours) we just add headers=headers to our requests
         a=requests.get('https://oauth.reddit.com{}'.format(path), headers=self.headers)
         print(a.json())
+        return a.json()
 
 
     def subscribe_to_sub(self, sub):
