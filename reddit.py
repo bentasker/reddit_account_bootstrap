@@ -58,7 +58,7 @@ class Reddit(object):
         res = requests.post('https://oauth.reddit.com/api/subscribe',
                                     data=data, headers=self.headers)
         
-        print(res.json())
+        #print(res.json())
 
 
     def unsubscribe_from_sub(self, sub):
@@ -72,7 +72,7 @@ class Reddit(object):
         res = requests.post('https://oauth.reddit.com/api/subscribe',
                                     data=data, headers=self.headers)
         
-        print(res.json())
+        #print(res.json())
 
 
     def get_my_subs(self):
