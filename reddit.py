@@ -100,3 +100,9 @@ class Reddit(object):
 
        subs.sort()
        return subs
+
+    def get_user_prefs(self):
+       ''' /api/v1/me/prefs
+       '''
+       res = self.request_path('/api/v1/me/prefs')
+       print(res)

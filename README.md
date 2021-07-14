@@ -27,7 +27,7 @@ To write out a list of subreddits, run
 
 You'll be prompted to provide login details and API token info.
 
-Once complete, a list of subs will be written out to the file `subs.txt`
+Once complete, a list of subs will be written out to the file `subs.txt`. Your user's preferences will also be written to `prefs.json`
 
 #### File format
 
@@ -40,6 +40,7 @@ Once complete, a list of subs will be written out to the file `subs.txt`
 
 You can trivially add or remove lines.
 
+`prefs.json` is a JSON file, with the format as defined [here](https://old.reddit.com/dev/api#GET_api_v1_me_prefs)
 
 ### Bootstrapping an account
 

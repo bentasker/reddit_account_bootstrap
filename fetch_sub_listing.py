@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
 # Fetch a list of subs that a user is currently subscribed to
+import json
 import reddit
 import getpass
 
@@ -22,4 +23,9 @@ my_subs = red.get_my_subs()
 # Write out to the subs file
 fh = open("subs.txt","w")
 fh.write('\n'.join(my_subs))
+fh.close()
+
+prefs = red.get_user_prefs()
+fh = open("prefs.json","w")
+fh.write(json.dumps(prefs))
 fh.close()
