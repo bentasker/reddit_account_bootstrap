@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 #
-#
-
 
 import requests
 
@@ -44,7 +42,7 @@ class Reddit(object):
             
         # while the token is valid (~2 hours) we just add headers=headers to our requests
         a=requests.get('https://oauth.reddit.com{}'.format(path), headers=self.headers)
-        print(a.json())
+
         return a.json()
 
 
@@ -75,3 +73,30 @@ class Reddit(object):
                                     data=data, headers=self.headers)
         
         print(res.json())
+
+
+    def get_my_subs(self):
+       ''' Generate and return a list of the user's subs
+       '''
+
+       subs = []
+
+       # Place the first request
+       res = self.request_path('/subreddits/mine/subscriber?sr_detail=false')
+
+       # Pull out the sub names
+       for sub in res['data']['children']:
+            subs.append(sub['data']['url'])
+
+       # Data is paginated, so we may need to fetch more
+       while True:
+            if "after" in res['data'] and res['data']['after']:
+                 # Request the next page
+                 res = self.request_path('/subreddits/mine/subscriber?sr_detail=false&after={}'.format(res['data']['after']))
+                 for sub in res['data']['children']:
+                     subs.append(sub['data']['url'])
+            else:
+                 break
+
+       subs.sort()
+       return subs
