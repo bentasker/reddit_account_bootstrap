@@ -34,7 +34,7 @@ if "-d" in sys.argv:
     red.unsubscribe_from_sub(sub_str)
 
 
-if not os.file_exists("subs.txt"):
+if not os.path.exists("subs.txt"):
     print("Error: subs.txt doesn't exist")
     sys.exit(1)
 
@@ -48,7 +48,7 @@ red.subscribe_to_sub(sub_line)
 fh.close()
 
 # Set prefs if the file exists
-if os.file_exists("prefs.json"):
+if os.path.exists("prefs.json"):
     fh = open("prefs.json", "r")
     prefs = json.loads(''.join(fh.readlines()))
     red.set_user_prefs(prefs)
