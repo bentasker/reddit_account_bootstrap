@@ -8,7 +8,7 @@
 # Released under GNU GPL V3, see LICENSE
 #
 
-
+import os
 import random
 import sys
 
@@ -103,10 +103,21 @@ if len(sys.argv) > 1:
     wordlist = fh.readlines()
     fh.close()
 else:
-    # Pull and load the default wordlist
-    import requests
-    r = requests.get("https://projects.bentasker.co.uk/static/wordlist.default.txt")
-    wordlist = r.text.split("\n")
+   if not os.path.exists("wordlist.default.txt"):
+      # Pull and load the default wordlist
+      import requests
+      r = requests.get("https://projects.bentasker.co.uk/static/wordlist.default.txt")
+      wordlist = r.text.split("\n")
+
+      # Save a copy of the file
+      fh = open("wordlist.default.txt", "w")
+      fh.write(r.text)
+      fh.close()
+
+   else:
+      fh = open("wordlist.default.txt", "r")
+      wordlist = fh.readlines()
+      fh.close()
 
 
 for i in range(options["numsuggestions"]):
