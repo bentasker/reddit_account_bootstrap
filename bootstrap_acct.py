@@ -4,6 +4,7 @@
 import json
 import requests
 import reddit
+import sys
 import getpass
 
 
@@ -24,6 +25,13 @@ red = reddit.Reddit(USER, PASSW, ID, SEC)
 #print()
 #print(red.subscribe_to_sub('/r/supportlol'))
 #print(red.unsubscribe_from_sub('/r/supportlol'))
+
+if "-d" in sys.argv:
+    # Clear out any existing subs
+    subs = red.get_my_subs()
+    sub_str = ','.join(subs)
+    red.unsubscribe_from_sub(sub_str)
+
 
 fh = open("subs.txt","r")
 subs = fh.readlines()

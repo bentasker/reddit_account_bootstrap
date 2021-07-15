@@ -42,13 +42,17 @@ You can trivially add or remove lines.
 
 `prefs.json` is a JSON file, with the format as defined [here](https://old.reddit.com/dev/api#GET_api_v1_me_prefs)
 
+
 ### Bootstrapping an account
 
 To configure an account, run
 
     ./bootstrap_account.py
 
-You'll be prompted to provie login details and API token info.
+You'll be prompted to provide login details and API token info.
 
 The file `subs.txt` will be read, and your user will join each subreddit listed there
 
+#### Options
+
+    -d       Clear any existing subs before joining listed subs
