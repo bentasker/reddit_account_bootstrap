@@ -76,7 +76,8 @@ def get_join_char(options):
 options = {
     "manglechars" : "Random", # Should we replace some letters with numbers - values are True, False, Random
     "joinchar" : "Random", # Set to a single char, or Random
-    "numwords" : 2 # how many words should we join
+    "numwords" : 2, # how many words should we join
+    "numsuggestions" : 5, # how many usernames should we suggest?
 }
 
 
@@ -88,9 +89,13 @@ if len(sys.argv) > 1:
 else:
     # Pull and load the default wordlist
     import requests
-    r = requests.get("https://projects.bentasker.co.uk/static/wordlist.txt")
+    r = requests.get("https://projects.bentasker.co.uk/static/wordlist.default.txt")
     wordlist = r.text.split("\n")
 
-print(gen_username(wordlist, options))
+
+print("Suggested Names :")
+print("")
+for i in range(options["numsuggestions"]):
+    print(gen_username(wordlist, options))
 
 
