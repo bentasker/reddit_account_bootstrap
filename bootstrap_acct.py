@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
 #
+import json
 import requests
 import reddit
 import getpass
@@ -30,5 +31,9 @@ subs = fh.readlines()
 # The API accepts a comma seperated list, so collapse down
 sub_line = ','.join(subs)
 red.subscribe_to_sub(sub_line)
-    
 fh.close()
+
+# TODO: Check if file exists
+fh = open("prefs.json", "r")
+prefs = json.loads(''.join(fh.readlines()))
+red.set_user_prefs(prefs)

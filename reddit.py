@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
 
+import json
 import requests
 
 
@@ -50,6 +51,9 @@ class Reddit(object):
         ''' https://www.reddit.com/dev/api#POST_api_subscribe
         '''
         
+        if not self.token:
+           self.get_token()
+
         data = {"action" : "sub",
                 "action_source": "o",
                 "skip_initial_defaults": True,
@@ -65,6 +69,9 @@ class Reddit(object):
         ''' https://www.reddit.com/dev/api#POST_api_subscribe
         '''
         
+        if not self.token:
+           self.get_token()
+
         data = {"action" : "unsub",
                 "action_source": "o",
                 "sr_name" : sub
@@ -78,6 +85,9 @@ class Reddit(object):
     def get_my_subs(self):
        ''' Generate and return a list of the user's subs
        '''
+
+       if not self.token:
+           self.get_token()
 
        subs = []
 
@@ -105,4 +115,18 @@ class Reddit(object):
        ''' /api/v1/me/prefs
        '''
        res = self.request_path('/api/v1/me/prefs')
-       print(res)
+       return res
+
+
+    def set_user_prefs(self, prefs):
+       ''' https://old.reddit.com/dev/api#GET_api_v1_me_prefs
+       '''
+
+       if not self.token:
+           self.get_token()
+
+       prefs['json'] = {"FOO": "bar"}
+       self.headers['Content-Type'] = "application/json"
+       res = requests.patch('https://oauth.reddit.com/api/v1/me/prefs',
+                               headers=self.headers,
+                               data=json.dumps(prefs))
