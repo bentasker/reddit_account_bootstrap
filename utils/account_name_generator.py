@@ -8,8 +8,16 @@ import random
 import sys
 
 
+options = {
+    "manglechars" : "Random", # Should we replace some letters with numbers - values are True, False, Random
+    "joinchar" : "Random", # Set to a single char, or Random
+    "numwords" : 2, # how many words should we join
+    "numsuggestions" : 5, # how many usernames should we suggest?
+}
+
+
 def pick_word(wordlist):
-    ''' Use a wordlist to generate a username
+    ''' Pick a word from the wordlist
     '''
     max = len(wordlist) - 1
     choice = random.randint(0,max)
@@ -17,25 +25,34 @@ def pick_word(wordlist):
 
 
 def gen_username(wordlist, options):
-   ''' Pick 2 words to generate a username
+   ''' Pick n words to generate a username
    '''
 
+   # Pick the words
    individs = [ pick_word(wordlist) for i in range(options['numwords']) ]
 
+   # What char are we using to join the words?
    join_char = get_join_char(options)
 
+   # Join into a single string
    uname_str = join_char.join(individs)
+
+   # Mangle chars
    uname = mangle(uname_str, options)
 
+   # We have a username suggestion, return it
    return uname
 
 
 def mangle(userstr, options):
     ''' Replace chars with numbers if mangle is enabled
     '''
+
+    # Is mangling enabled?
     if options['manglechars'] == False:
         return userstr
     elif options['manglechars'] == "Random" and random.randint(0,1) == 1:
+        # Random mode enabled and we've chosen not to
         return userstr
 
     # Otherwise, do some mangling
@@ -57,13 +74,15 @@ def mangle(userstr, options):
         nm = chars[pos][1]
         userstr = userstr.replace(ch, str(nm))
 
+    # Return the mangled string
     return userstr
 
 def get_join_char(options):
     ''' Names are going to be joined, but what char should we use?
     '''
 
-    if len(options["joinchar"]) == 1:
+    # Had the user configured a specific joinchar?
+    if type(options["joinchar"]) == str and len(options["joinchar"]) < 2:
          return options["joinchar"]
 
     # Otherwise, we pick one at random
@@ -71,14 +90,6 @@ def get_join_char(options):
     pos = random.randint(0,len(chars) - 1)
     return chars[pos]
 
-
-
-options = {
-    "manglechars" : "Random", # Should we replace some letters with numbers - values are True, False, Random
-    "joinchar" : "Random", # Set to a single char, or Random
-    "numwords" : 2, # how many words should we join
-    "numsuggestions" : 5, # how many usernames should we suggest?
-}
 
 
 if len(sys.argv) > 1:
