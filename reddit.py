@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 #
+# Library file to implement accessing reddit via API and performing a variety of actions
+#
+# Copyright (C) 2021 B Tasker
+# Released under GNU GPL V3, see LICENSE
+#
 
 import json
 import requests

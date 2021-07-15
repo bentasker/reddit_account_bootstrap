@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 #
 # Fetch a list of subs that a user is currently subscribed to
+# along with their preferences
+#
+# Copyright (C) 2021 B Tasker
+# Released under GNU GPL V3, see LICENSE
+#
+
 import json
 import reddit
 import getpass

@@ -1,4 +1,14 @@
 #!/bin/env python3
+#
+# Fetch a wordlist from github and process it to build a new wordlist
+# of candidate words.
+#
+# Will write out to wordlist.txt
+#
+# Copyright (C) 2021 B Tasker
+# Released under GNU GPL V3, see LICENSE
+#
+
 
 import requests
 

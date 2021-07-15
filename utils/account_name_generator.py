@@ -2,7 +2,12 @@
 #
 # Generate reddit usernames based on a word list
 #
-# If not wordlist is provided, a default will be fetched with HTTP
+# If no wordlist is provided, a default will be fetched with HTTP
+#
+# Copyright (C) 2021 B Tasker
+# Released under GNU GPL V3, see LICENSE
+#
+
 
 import random
 import sys

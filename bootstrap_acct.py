@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 #
+# Use Reddit's API to configure an account
 #
+# Copyright (C) 2021 B Tasker
+# Released under GNU GPL V3, see LICENSE
+#
+
 import os
 import json
 import requests
