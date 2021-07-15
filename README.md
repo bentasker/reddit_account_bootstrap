@@ -6,6 +6,7 @@ It's common wisdom that you should periodically burn your reddit handle, but onc
 
 This set of scripts is designed to aid in that - it allows you to dump out a list of subs, and to automatically configure a new user to subscribe to those subs
 
+----
 
 ### Pre-Requisites
 
@@ -18,6 +19,7 @@ You'll need to have obtained an API key from reddit for any account that you wan
 1. Enter a URL (any URL) into `redirect uri`
 1. You'll then be provided with and ID (3rd line down) and a secret, make a note of both
 
+----
 
 ### Fetching Sub-Reddits
 
@@ -28,6 +30,8 @@ To write out a list of subreddits, run
 You'll be prompted to provide login details and API token info.
 
 Once complete, a list of subs will be written out to the file `subs.txt`. Your user's preferences will also be written to `prefs.json`
+
+----
 
 #### File format
 
@@ -42,6 +46,7 @@ You can trivially add or remove lines.
 
 `prefs.json` is a JSON file, with the format as defined [here](https://old.reddit.com/dev/api#GET_api_v1_me_prefs)
 
+----
 
 ### Bootstrapping an account
 
