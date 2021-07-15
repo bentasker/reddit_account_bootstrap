@@ -104,8 +104,6 @@ else:
     wordlist = r.text.split("\n")
 
 
-print("Suggested Names :")
-print("")
 for i in range(options["numsuggestions"]):
     print(gen_username(wordlist, options))
 
