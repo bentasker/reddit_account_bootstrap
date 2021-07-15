@@ -25,6 +25,7 @@ fh = open("subs.txt","w")
 fh.write('\n'.join(my_subs))
 fh.close()
 
+# Get the user's settings
 prefs = red.get_user_prefs()
 fh = open("prefs.json","w")
 fh.write(json.dumps(prefs))

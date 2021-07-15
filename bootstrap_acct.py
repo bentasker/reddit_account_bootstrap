@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
 #
+import os
 import json
 import requests
 import reddit
@@ -21,11 +22,6 @@ def get_info():
 USER, PASSW, ID, SEC = get_info()
 red = reddit.Reddit(USER, PASSW, ID, SEC)
 
-#red.request_path("/api/v1/me")
-#print()
-#print(red.subscribe_to_sub('/r/supportlol'))
-#print(red.unsubscribe_from_sub('/r/supportlol'))
-
 if "-d" in sys.argv:
     # Clear out any existing subs
     subs = red.get_my_subs()
@@ -33,6 +29,11 @@ if "-d" in sys.argv:
     red.unsubscribe_from_sub(sub_str)
 
 
+if not os.file_exists("subs.txt"):
+    print("Error: subs.txt doesn't exist")
+    sys.exit(1)
+
+# Read in the list of subs to sub to
 fh = open("subs.txt","r")
 subs = fh.readlines()
 
@@ -41,7 +42,8 @@ sub_line = ','.join(subs)
 red.subscribe_to_sub(sub_line)
 fh.close()
 
-# TODO: Check if file exists
-fh = open("prefs.json", "r")
-prefs = json.loads(''.join(fh.readlines()))
-red.set_user_prefs(prefs)
+# Set prefs if the file exists
+if os.file_exists("prefs.json"):
+    fh = open("prefs.json", "r")
+    prefs = json.loads(''.join(fh.readlines()))
+    red.set_user_prefs(prefs)
