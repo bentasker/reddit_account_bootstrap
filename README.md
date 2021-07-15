@@ -56,3 +56,47 @@ The file `subs.txt` will be read, and your user will join each subreddit listed 
 #### Options
 
     -d       Clear any existing subs before joining listed subs
+
+
+----
+
+## Utils
+
+### `account_name_generator.py`
+
+Generates user account name suggestions based on an input wordlist. If no wordlist is specified, then a default list is pulled from my site
+
+    ./utils/account_name_generator.py [path to wordlist]
+
+Will generate suggestions by merging 2 words from the wordlist, and mangling some chars.
+
+The head of the script contains some basic configuration options
+
+    options = {
+        "manglechars" : "Random", # Should we replace some letters with numbers - values are True, False, Random
+        "joinchar" : "Random", # Set to a single char, or Random
+        "numwords" : 2, # how many words should we join
+        "numsuggestions" : 5, # how many usernames should we suggest?
+    }
+
+The script will output a set of suggestions:
+
+    $ ./utils/account_name_generator.py 
+    ruching-outbr4g
+    reeshie-entities
+    cobby_b3cry
+    1ngene-5qu4m4ted
+    deluder_syc0narian
+
+
+### `wordlist_seed.py`
+
+Used to build the basis of a wordlist.
+
+Fetches a wordlist from github and then strips words that wouldn't be suitable for use (due to length etc).
+
+Will save the modified list out to `wordlist.txt` in the current working directory - you can then manually add/remove words as needed
+
+    ./utils/wordlist_seed.py
+
+
