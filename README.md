@@ -114,3 +114,8 @@ Will save the modified list out to `wordlist.txt` in the current working directo
     ./utils/wordlist_seed.py
 
 
+----
+
+## License
+
+This codebase is Copyright 2021 B Tasker and released under GNU GPL V3, see [LICENSE](LICENSE).
