@@ -5,6 +5,15 @@ Reddit Account Bootstrap
 It's common wisdom that you should periodically burn your reddit handle, but once you've got your subs set up just right it's a pain setting a new account up.
 
 This set of scripts is designed to aid in that - it allows you to dump out a list of subs, and to automatically configure a new user to subscribe to those subs
+----
+
+### Constraints
+
+There are a few constraints that are worth knowing about
+
+* New reddit is the default: For whatever reason, the setting to prefer san^H^H^H old reddit isn't exposed, so that setting won't be migrated across - if you log in via web-browser you'll be assaulted by the mess they call new reddit
+* Sub account age limits - various subs won't let young accounts post/comment, so you may find you can only read them for a little while, until you either build up sufficient comment karma, or your account gets old enough.
+
 
 ----
 
